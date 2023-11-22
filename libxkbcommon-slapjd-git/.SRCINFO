@@ -1,0 +1,46 @@
+pkgbase = libxkbcommon-slapjd-git
+	pkgdesc = Keymap handling library for toolkits and window systems
+	pkgver = 1.6.0_r2212.gda790df
+	pkgrel = 1
+	url = https://xkbcommon.org/
+	arch = x86_64
+	license = custom
+	checkdepends = libgl
+	checkdepends = xorg-server-xvfb
+	makedepends = git
+	makedepends = doxygen
+	makedepends = libxcb
+	makedepends = libxml2
+	makedepends = meson
+	makedepends = wayland
+	makedepends = wayland-protocols
+	makedepends = xkeyboard-config
+	makedepends = xorgproto
+	source = git+https://github.com/xkbcommon/libxkbcommon.git
+	source = colemak-mod.patch
+	sha256sums = SKIP
+	sha256sums = f818edf47db4d472e64e255106ca956c1c6aefa0ded68a487d7db2ded1ef56cb
+
+pkgname = libxkbcommon-slapjd-git
+	depends = libxml2
+	depends = xkeyboard-config
+	optdepends = libxkbcommon-x11: xkbcli interactive-x11
+	optdepends = wayland: xkbcli interactive-wayland
+	provides = libxkbcommon
+	provides = libxkbcommon.so
+	provides = libxkbregistry.so
+	conflicts = libxkbcommon
+
+pkgname = libxkbcommon-x11-slapjd-git
+	pkgdesc = Keyboard handling library using XKB data for X11 XCB clients
+	depends = libxcb
+	depends = libxkbcommon-slapjd-git
+	depends = libxkbcommon.so
+	provides = libxkbcommon-x11
+	provides = libxkbcommon-x11.so
+	conflicts = libxkbcommon-x11
+
+pkgname = libxkbcommon-doc-slapjd-git
+	pkgdesc = API documentation for libxkbcommon
+	provides = libxkbcommon-doc
+	conflicts = libxkbcommon-doc

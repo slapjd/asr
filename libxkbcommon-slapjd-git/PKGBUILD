@@ -1,0 +1,95 @@
+# Merged with official ABS libxkbcommon PKGBUILD by João, 2022/05/29 (all respective contributors apply herein)
+# Maintainer: João Figueiredo & chaotic-aur <islandc0der@chaotic.cx>
+# Contributor: Joel Teichroeb <joel@teichroeb.net>
+
+pkgbase=libxkbcommon-slapjd-git
+pkgname=(libxkbcommon-slapjd-git libxkbcommon-x11-slapjd-git libxkbcommon-doc-slapjd-git)
+pkgver=1.6.0_r2212.g2241a6a
+pkgrel=1
+pkgdesc='Keymap handling library for toolkits and window systems'
+url='https://xkbcommon.org/'
+arch=($CARCH)
+license=(custom)
+makedepends=(git doxygen libxcb libxml2 meson wayland wayland-protocols xkeyboard-config xorgproto)
+checkdepends=(libgl xorg-server-xvfb)
+source=(
+  "git+https://github.com/xkbcommon/${pkgbase%-slapjd-git}.git"
+  "colemak-mod.patch"
+)
+sha256sums=(
+  'SKIP'
+  'f818edf47db4d472e64e255106ca956c1c6aefa0ded68a487d7db2ded1ef56cb'
+)
+
+pkgver() {
+  cd ${pkgbase%-slapjd-git}
+  _ver="$(grep -m1 'version:' meson.build | cut -d "'" -f2 | tr - .)"
+  echo "${_ver}_r$(git rev-list --count HEAD).g$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd libxkbcommon
+  git am --keep-cr ../colemak-mod.patch
+}
+
+build() {
+  arch-meson libxkbcommon build
+  meson compile -C build
+}
+
+check() {
+  xvfb-run -s '-nolisten local' meson test -C build --print-errorlogs
+}
+
+_pick() {
+  local p="$1" f d; shift
+  for f; do
+    d="$srcdir/$p/${f#$pkgdir/}"
+    mkdir -p "$(dirname "$d")"
+    mv "$f" "$d"
+    rmdir -p --ignore-fail-on-non-empty "$(dirname "$f")"
+  done
+}
+
+package_libxkbcommon-slapjd-git() {
+  depends=(libxml2 xkeyboard-config)
+  optdepends=(
+    'libxkbcommon-x11: xkbcli interactive-x11'
+    'wayland: xkbcli interactive-wayland'
+  )
+  conflicts=(libxkbcommon)
+  provides=(libxkbcommon{,.so} libxkbregistry.so)
+
+  meson install -C build --destdir "$pkgdir"
+
+  _pick x11 "$pkgdir"/usr/lib/*x11*
+  _pick x11 "$pkgdir"/usr/lib/pkgconfig/*x11*
+  _pick x11 "$pkgdir"/usr/lib/xkbcommon/*x11*
+  _pick x11 "$pkgdir"/usr/include/xkbcommon/*x11*
+  _pick x11 "$pkgdir"/usr/share/man/man1/*x11*
+
+  _pick doc "$pkgdir"/usr/share/doc
+
+  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
+}
+
+package_libxkbcommon-x11-slapjd-git() {
+  pkgdesc='Keyboard handling library using XKB data for X11 XCB clients'
+  depends=(libxcb libxkbcommon-slapjd-git libxkbcommon.so)
+  conflicts=(libxkbcommon-x11)
+  provides=(libxkbcommon-x11{,.so})
+
+  mv x11/* "$pkgdir"/
+
+  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
+}
+
+package_libxkbcommon-doc-slapjd-git() {
+  conflicts=(libxkbcommon-doc)
+  provides=(libxkbcommon-doc)
+  pkgdesc='API documentation for libxkbcommon'
+
+  mv doc/* "$pkgdir"/
+
+  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
+}
