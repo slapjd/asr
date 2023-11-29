@@ -30,7 +30,7 @@ pkgver() {
 
 build() {
   cd "libx11"
-  git am --keep-cr ../colemak-mod.patch
+  patch -Np1 < ../colemak-mod.patch
 
   NOCONFIGURE=1 ./autogen.sh
   ./configure \

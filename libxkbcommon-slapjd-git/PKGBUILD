@@ -4,7 +4,7 @@
 
 pkgbase=libxkbcommon-slapjd-git
 pkgname=(libxkbcommon-slapjd-git libxkbcommon-x11-slapjd-git libxkbcommon-doc-slapjd-git)
-pkgver=1.6.0_r2212.g2241a6a
+pkgver=1.6.0_r2210.g7caf57f
 pkgrel=1
 pkgdesc='Keymap handling library for toolkits and window systems'
 url='https://xkbcommon.org/'
@@ -29,7 +29,7 @@ pkgver() {
 
 prepare() {
   cd libxkbcommon
-  git am --keep-cr ../colemak-mod.patch
+  patch -Np1 < ../colemak-mod.patch
 }
 
 build() {
