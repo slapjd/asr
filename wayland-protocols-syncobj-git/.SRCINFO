@@ -1,6 +1,6 @@
 pkgbase = wayland-protocols-syncobj-git
 	pkgdesc = Wayland protocols that add functionalities not available in the core protocol
-	pkgver = 1.32.r15.gbde1c87
+	pkgver = 1.32.r18.gc4f5598
 	pkgrel = 1
 	url = https://wayland.freedesktop.org/
 	arch = any
@@ -10,7 +10,9 @@ pkgbase = wayland-protocols-syncobj-git
 	makedepends = meson
 	makedepends = ninja
 	provides = wayland-protocols
+	provides = wayland-protocols-git
 	conflicts = wayland-protocols
+	conflicts = wayland-protocols-git
 	source = git+https://gitlab.freedesktop.org/wayland/wayland-protocols.git
 	source = 90.patch::https://gitlab.freedesktop.org/wayland/wayland-protocols/-/merge_requests/90.patch
 	sha1sums = SKIP

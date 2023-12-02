@@ -1,6 +1,6 @@
 pkgbase = libxkbcommon-slapjd-git
 	pkgdesc = Keymap handling library for toolkits and window systems
-	pkgver = 1.6.0_r2210.g7caf57f
+	pkgver = 1.6.0_r2211.g0db1dc1
 	pkgrel = 1
 	url = https://xkbcommon.org/
 	arch = x86_64
