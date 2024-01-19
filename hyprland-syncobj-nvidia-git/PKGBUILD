@@ -1,4 +1,6 @@
-# Maintainer: tohmais <callum.wishart@protonmail.com>
+# Patched by slapjd, everything else done by other contributors
+# Maintainer: slapjd <slapjd@outlook.com>
+# Contributor: tohmais <callum.wishart@protonmail.com>
 # Contributor: Kuan-Yen Chou <kuanyenchou@gmail.com>
 
 pkgname=hyprland-syncobj-nvidia-git

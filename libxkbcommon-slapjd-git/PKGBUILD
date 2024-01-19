@@ -1,5 +1,7 @@
+# Patched by slapjd, everything else done by other contributors
 # Merged with official ABS libxkbcommon PKGBUILD by João, 2022/05/29 (all respective contributors apply herein)
-# Maintainer: João Figueiredo & chaotic-aur <islandc0der@chaotic.cx>
+# Maintainer: slapjd <slapjd@outlook.com>
+# Contributor: João Figueiredo & chaotic-aur <islandc0der@chaotic.cx>
 # Contributor: Joel Teichroeb <joel@teichroeb.net>
 
 pkgbase=libxkbcommon-slapjd-git

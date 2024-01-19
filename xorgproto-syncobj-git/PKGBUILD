@@ -1,4 +1,6 @@
-# Maintainer: Yurii Kolesnykov
+# Patched by slapjd, everything else done by other contributors
+# Maintainer: slapjd <slapjd@outlook.com>
+# Contributor: Yurii Kolesnykov
 # Based on extra/xorgproto by AndyRTR <andyrtr@archlinux.org>
 
 _pkgname=xorgproto

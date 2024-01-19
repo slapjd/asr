@@ -1,8 +1,10 @@
-# Maintainer: Antonin Décimo <antonin dot decimo at gmail dot com>
+# Patched by slapjd, everything else done by other contributors
+# Maintainer: slapjd <slapjd@outlook.com>
+# Contributor: Antonin Décimo <antonin dot decimo at gmail dot com>
 # Contributor: AndyRTR <andyrtr@archlinux.org>
 
 pkgname=xorg-xwayland-syncobj-git
-pkgver=23.1.2.r203.gf2b019d2b
+pkgver=23.1.2.r221.gd1bbf82d7
 pkgrel=1
 arch=('x86_64')
 license=('custom')
