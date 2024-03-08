@@ -5,7 +5,7 @@
 
 _pkgname=xorgproto
 pkgname=$_pkgname-syncobj-git
-pkgver=2023.2.8.r2754.g1c8128d
+pkgver=2023.2.16.r2762.gdb56b50
 pkgrel=1
 pkgdesc='combined X.Org X11 Protocol headers (git version)'
 arch=('any')
