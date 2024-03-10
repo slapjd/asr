@@ -1,0 +1,127 @@
+# Patched by slapjd, everything else done by other contributors
+# Maintainer: slapjd <slapjd@outlook.com>
+# Contributor: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Jan Alexander Steffens <jan.steffens@gmail.com>
+# Contributor: Daniel Micay <danielmicay@gmail.com>
+# Contributor: Mladen Pejakovic <pejakm@gmail.com>
+
+pkgbase=lib32-libxkbcommon-slapjd-git
+pkgname=(
+  lib32-libxkbcommon-slapjd-git
+  lib32-libxkbcommon-x11-slapjd-git
+)
+pkgver=1.6.0_r2257.gabb6e588
+pkgrel=1
+pkgdesc='Keymap handling library for toolkits and window systems (32-bit)'
+url='https://xkbcommon.org/'
+arch=(x86_64)
+license=(custom)
+makedepends=(
+  git
+  lib32-libxcb
+  lib32-libxml2
+  lib32-wayland
+  meson
+  wayland-protocols
+  xkeyboard-config
+  xorgproto
+)
+checkdepends=(
+  libgl
+  xorg-server-xvfb
+)
+options=(
+  debug
+)
+source=(
+    "git+https://github.com/xkbcommon/libxkbcommon"
+    "colemak-mod.patch"
+)
+sha256sums=(
+    'SKIP'
+    '68943e027895be387aa9926b46e0f1aa5abe7f96c1f836c71277e964711c1cd1'
+)
+
+pkgver() {
+  cd libxkbcommon
+  _ver="$(grep -m1 'version:' meson.build | cut -d "'" -f2 | tr - .)"
+  echo "${_ver}_r$(git rev-list --count HEAD).g$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd libxkbcommon
+  patch -Np1 < ../colemak-mod.patch
+}
+
+build() {
+  local meson_options=(
+    --cross-file lib32
+    -D enable-bash-completion=false
+    -D enable-docs=false
+    -D enable-tools=false
+  )
+
+  arch-meson libxkbcommon build "${meson_options[@]}"
+  meson compile -C build
+}
+
+check() {
+  xvfb-run -s '-nolisten local' meson test -C build --print-errorlogs
+}
+
+_pick() {
+  local p="$1" f d; shift
+  for f; do
+    d="$srcdir/$p/${f#$pkgdir/}"
+    mkdir -p "$(dirname "$d")"
+    mv "$f" "$d"
+    rmdir -p --ignore-fail-on-non-empty "$(dirname "$f")"
+  done
+}
+
+package_lib32-libxkbcommon-slapjd-git() {
+  depends=(
+    lib32-libxml2
+    xkeyboard-config
+    libxkbcommon-slapjd-git
+  )
+  conflicts=(
+    lib32-libxkbcommon
+  )
+  provides=(
+    lib32-libxkbcommon
+    libxkbcommon.so
+    libxkbregistry.so
+  )
+
+  meson install -C build --destdir "$pkgdir"
+  rm -r "$pkgdir/usr/include"
+
+  _pick x11 "$pkgdir"/usr/lib32/*x11*
+  _pick x11 "$pkgdir"/usr/lib32/pkgconfig/*x11*
+
+  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
+}
+
+package_lib32-libxkbcommon-x11-slapjd-git() {
+  pkgdesc='Keyboard handling library using XKB data for X11 XCB clients (32-bit)'
+  depends=(
+    lib32-libxcb
+    lib32-libxkbcommon-slapjd-git
+    libxkbcommon.so
+    libxkbcommon-x11-slapjd-git
+  )
+  conflicts=(
+    lib32-libxkbcommon-x11
+  )
+  provides=(
+    lib32-libxkbcommon-x11
+    libxkbcommon-x11.so
+  )
+
+  mv x11/* "$pkgdir"/
+
+  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
+}
+
+# vim:set sw=2 sts=-1 et:
