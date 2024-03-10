@@ -6,7 +6,7 @@
 
 pkgbase=libxkbcommon-slapjd-git
 pkgname=(libxkbcommon-slapjd-git libxkbcommon-x11-slapjd-git libxkbcommon-doc-slapjd-git)
-pkgver=1.6.0_r2218.g31ebe00
+pkgver=1.6.0_r2257.gabb6e588
 pkgrel=1
 pkgdesc='Keymap handling library for toolkits and window systems'
 url='https://xkbcommon.org/'
@@ -15,16 +15,16 @@ license=(custom)
 makedepends=(git doxygen libxcb libxml2 meson wayland wayland-protocols xkeyboard-config xorgproto)
 checkdepends=(libgl xorg-server-xvfb)
 source=(
-  "git+https://github.com/xkbcommon/${pkgbase%-slapjd-git}.git"
+  "git+https://github.com/xkbcommon/libxkbcommon.git"
   "colemak-mod.patch"
 )
 sha256sums=(
   'SKIP'
-  'f818edf47db4d472e64e255106ca956c1c6aefa0ded68a487d7db2ded1ef56cb'
+  '68943e027895be387aa9926b46e0f1aa5abe7f96c1f836c71277e964711c1cd1'
 )
 
 pkgver() {
-  cd ${pkgbase%-slapjd-git}
+  cd libxkbcommon
   _ver="$(grep -m1 'version:' meson.build | cut -d "'" -f2 | tr - .)"
   echo "${_ver}_r$(git rev-list --count HEAD).g$(git rev-parse --short HEAD)"
 }

@@ -1,17 +1,8 @@
-From 094b2535147bf1b68fc9750ce52a16a780b2e2c9 Mon Sep 17 00:00:00 2001
-From: slapjd <slapjd+code@outlook.com>
-Date: Tue, 24 Oct 2023 05:05:25 +0100
-Subject: [PATCH 1/2] Colemak Translation
-
----
- src/keysym-utf.c | 50 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
-
 diff --git a/src/keysym-utf.c b/src/keysym-utf.c
-index 0bb9a4f..8c79d82 100644
+index 46bf777..6fdf7b3 100644
 --- a/src/keysym-utf.c
 +++ b/src/keysym-utf.c
-@@ -827,6 +827,46 @@ static const struct codepair keysymtab[] = {
+@@ -828,6 +828,46 @@ static const struct codepair keysymtab[] = {
      { 0x20ac, 0x20ac }, /*                    EuroSign € EURO SIGN */
  };
  
@@ -58,7 +49,7 @@ index 0bb9a4f..8c79d82 100644
  /* binary search with range check */
  static uint32_t
  bin_search(const struct codepair *table, size_t length, xkb_keysym_t keysym)
-@@ -855,6 +895,11 @@ bin_search(const struct codepair *table, size_t length, xkb_keysym_t keysym)
+@@ -856,6 +896,11 @@ bin_search(const struct codepair *table, size_t length, xkb_keysym_t keysym)
  XKB_EXPORT uint32_t
  xkb_keysym_to_utf32(xkb_keysym_t keysym)
  {
@@ -70,7 +61,7 @@ index 0bb9a4f..8c79d82 100644
      /* first check for Latin-1 characters (1:1 mapping) */
      if ((keysym >= 0x0020 && keysym <= 0x007e) ||
          (keysym >= 0x00a0 && keysym <= 0x00ff))
-@@ -896,6 +941,11 @@ xkb_keysym_to_utf32(xkb_keysym_t keysym)
+@@ -897,6 +942,11 @@ xkb_keysym_to_utf32(xkb_keysym_t keysym)
  XKB_EXPORT xkb_keysym_t
  xkb_utf32_to_keysym(uint32_t ucs)
  {
@@ -82,28 +73,11 @@ index 0bb9a4f..8c79d82 100644
      /* first check for Latin-1 characters (1:1 mapping) */
      if ((ucs >= 0x0020 && ucs <= 0x007e) ||
          (ucs >= 0x00a0 && ucs <= 0x00ff))
--- 
-2.43.0
-
-
-From 6cbf9c2b10616428238ca7d3a0e5c1c996917df5 Mon Sep 17 00:00:00 2001
-From: slapjd <slapjd+code@outlook.com>
-Date: Wed, 22 Nov 2023 03:54:51 +0000
-Subject: [PATCH 2/2] Update tests for colemak
-
-i *think* keysym and state are fine.
-i don't actually know what the compose test *should* bedoing with our mod so i've just disabled that test
----
- test/compose.c |  2 +-
- test/keysym.c  |  8 ++++----
- test/state.c   | 30 +++++++++++++++---------------
- 3 files changed, 20 insertions(+), 20 deletions(-)
-
 diff --git a/test/compose.c b/test/compose.c
-index 56e2e2c..3303840 100644
+index 3a017f1..7429ceb 100644
 --- a/test/compose.c
 +++ b/test/compose.c
-@@ -926,7 +926,7 @@ main(int argc, char *argv[])
+@@ -975,7 +975,7 @@ main(int argc, char *argv[])
  
      test_compose_utf8_bom(ctx);
      test_invalid_encodings(ctx);
@@ -113,10 +87,21 @@ index 56e2e2c..3303840 100644
      test_XCOMPOSEFILE(ctx);
      test_from_locale(ctx);
 diff --git a/test/keysym.c b/test/keysym.c
-index d2d1402..d882ef1 100644
+index 7061146..0cf5dfc 100644
 --- a/test/keysym.c
 +++ b/test/keysym.c
-@@ -263,8 +263,8 @@ main(void)
+@@ -373,7 +373,9 @@ main(void)
+                       ks, name, expected, got);
+ #if HAVE_ICU
+         /* Check case mappings */
+-        test_icu_case_mappings(ks);
++        /* Actually don't, because with colemak KeySymbols with upper 
++           cases is not the same thing as UTF-8 with upper cases */
++        //test_icu_case_mappings(ks);
+ #endif
+     }
+     iter = xkb_keysym_iterator_unref(iter);
+@@ -520,8 +522,8 @@ main(void)
      assert(test_utf8(0x00a0, "\xc2\xa0"));
      assert(test_utf8(0x00ff, "\xc3\xbf"));
  
@@ -127,7 +112,7 @@ index d2d1402..d882ef1 100644
      assert(test_utf8(XKB_KEY_m, "m"));
      assert(test_utf8(XKB_KEY_Cyrillic_em, "м"));
      assert(test_utf8(XKB_KEY_Cyrillic_u, "у"));
-@@ -305,8 +305,8 @@ main(void)
+@@ -562,8 +564,8 @@ main(void)
      assert(test_utf8(0x0100dfff, NULL) == 0); // Unicode surrogates
      assert(test_utf8(0x1110000, NULL) == 0);
  
@@ -139,7 +124,7 @@ index d2d1402..d882ef1 100644
      assert(test_utf32_to_keysym(0x43c, XKB_KEY_Cyrillic_em));
      assert(test_utf32_to_keysym(0x443, XKB_KEY_Cyrillic_u));
 diff --git a/test/state.c b/test/state.c
-index 89dfa7e..ee6f507 100644
+index 283c471..cdc4fb4 100644
 --- a/test/state.c
 +++ b/test/state.c
 @@ -616,25 +616,25 @@ test_get_utf8_utf32(struct xkb_keymap *keymap)
@@ -192,6 +177,3 @@ index 89dfa7e..ee6f507 100644
  
      xkb_state_unref(state);
  }
--- 
-2.43.0
-
