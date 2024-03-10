@@ -11,7 +11,7 @@ pkgdesc="Free, open source, portable framework for OpenGL application developmen
 arch=('x86_64' 'armv7h' 'aarch64')
 url="http://www.glfw.org/"
 license=('custom:ZLIB')
-depends=('libxi' 'libxrandr' 'libxinerama' 'libxcursor' 'wayland' 'libxkbcommon')
+depends=('libxi' 'libxrandr' 'libxinerama' 'libxcursor' 'wayland' 'libxkbcommon' 'glfw')
 makedepends=('git' 'cmake' 'ninja' 'doxygen' 'wayland-protocols' 'mesa')
 optdepends=('libgl: for OpenGL support'
             'opengl-driver: for OpenGL support'

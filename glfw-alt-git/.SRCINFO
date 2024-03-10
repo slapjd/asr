@@ -19,6 +19,7 @@ pkgbase = glfw-alt-git
 	depends = libxcursor
 	depends = wayland
 	depends = libxkbcommon
+	depends = glfw
 	optdepends = libgl: for OpenGL support
 	optdepends = opengl-driver: for OpenGL support
 	optdepends = vulkan-icd-loader: for Vulkan support
