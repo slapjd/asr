@@ -1,0 +1,21 @@
+pkgbase = lib32-libx11-slapjd-git
+	pkgdesc = X11 client-side library (32-bit)
+	pkgver = 1.8.7.r26.g4ab58f26
+	pkgrel = 1
+	url = https://xorg.freedesktop.org/
+	arch = x86_64
+	license = custom:XFREE86
+	makedepends = xorg-util-macros
+	makedepends = xorgproto
+	makedepends = xtrans
+	makedepends = gcc-multilib
+	depends = lib32-libxcb
+	depends = libx11-slapjd-git
+	provides = lib32-libx11=1.8.7.r26.g4ab58f26
+	conflicts = lib32-libx11
+	source = git+https://gitlab.freedesktop.org/xorg/lib/libx11.git
+	source = colemak-mod.patch
+	sha256sums = SKIP
+	sha256sums = 7219a9100e6178eaa0daf13983e78875bb19033429a65d8dcd0b8292e2fc73fc
+
+pkgname = lib32-libx11-slapjd-git
