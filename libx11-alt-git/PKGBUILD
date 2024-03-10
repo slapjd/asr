@@ -1,0 +1,48 @@
+# Patched by slapjd, everything else done by other contributors
+# Maintainer: slapjd <slapjd@outlook.com>
+# Contributor: Jan de Groot <jgc@archlinux.org>
+
+_pkgbasename=libx11
+pkgname=$_pkgbasename-alt-git
+pkgver=1.8.7.r26.g4ab58f26
+pkgrel=1
+pkgdesc="Core X11 protocol client library"
+arch=(x86_64)
+url="https://xorg.freedesktop.org/"
+depends=('glibc' 'libxcb' 'xorgproto' $_pkgbasename)
+makedepends=('git' 'xorg-util-macros' 'xtrans')
+license=('custom:XFREE86')
+source=("git+https://gitlab.freedesktop.org/xorg/lib/libx11.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "libx11"
+
+  git describe --long --tags | sed 's/^libX11-//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+  cd libx11
+
+  NOCONFIGURE=1 ./autogen.sh
+  ./configure --prefix=/usr --disable-xf86bigfont \
+      --libdir=/usr/lib/alt
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+  make
+}
+
+check() {
+  cd libx11
+
+  make check
+}
+
+package() {
+  cd libx11
+  make DESTDIR="${pkgdir}" install
+
+  rm -rf "${pkgdir}"/usr/{include,share}
+
+  mkdir -p "$pkgdir/usr/share/licenses"
+  ln -s $_pkgbasename "$pkgdir/usr/share/licenses/$pkgname"
+}

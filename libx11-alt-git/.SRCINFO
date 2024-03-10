@@ -1,0 +1,18 @@
+pkgbase = libx11-alt-git
+	pkgdesc = Core X11 protocol client library
+	pkgver = 1.8.7.r26.g4ab58f26
+	pkgrel = 1
+	url = https://xorg.freedesktop.org/
+	arch = x86_64
+	license = custom:XFREE86
+	makedepends = git
+	makedepends = xorg-util-macros
+	makedepends = xtrans
+	depends = glibc
+	depends = libxcb
+	depends = xorgproto
+	depends = libx11
+	source = git+https://gitlab.freedesktop.org/xorg/lib/libx11.git
+	sha256sums = SKIP
+
+pkgname = libx11-alt-git
