@@ -4,7 +4,7 @@
 # Contributor: AndyRTR <andyrtr@archlinux.org>
 
 pkgname=xorg-xwayland-syncobj-git
-pkgver=23.2.4.r282.g934b771f7
+pkgver=23.2.4.r305.gb335a0fa2
 pkgrel=1
 arch=('x86_64')
 license=('custom')

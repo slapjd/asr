@@ -1,6 +1,6 @@
 pkgbase = libxkbcommon-slapjd-git
 	pkgdesc = Keymap handling library for toolkits and window systems
-	pkgver = 1.6.0_r2211.g0db1dc1
+	pkgver = 1.6.0_r2264.g346d6871
 	pkgrel = 1
 	url = https://xkbcommon.org/
 	arch = x86_64
@@ -19,7 +19,7 @@ pkgbase = libxkbcommon-slapjd-git
 	source = git+https://github.com/xkbcommon/libxkbcommon.git
 	source = colemak-mod.patch
 	sha256sums = SKIP
-	sha256sums = f818edf47db4d472e64e255106ca956c1c6aefa0ded68a487d7db2ded1ef56cb
+	sha256sums = 68943e027895be387aa9926b46e0f1aa5abe7f96c1f836c71277e964711c1cd1
 
 pkgname = libxkbcommon-slapjd-git
 	depends = libxml2

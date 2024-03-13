@@ -6,7 +6,7 @@
 
 pkgbase=libxkbcommon-slapjd-git
 pkgname=(libxkbcommon-slapjd-git libxkbcommon-x11-slapjd-git libxkbcommon-doc-slapjd-git)
-pkgver=1.6.0_r2257.gabb6e588
+pkgver=1.6.0_r2264.g346d6871
 pkgrel=1
 pkgdesc='Keymap handling library for toolkits and window systems'
 url='https://xkbcommon.org/'
