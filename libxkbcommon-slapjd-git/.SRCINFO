@@ -8,7 +8,6 @@ pkgbase = libxkbcommon-slapjd-git
 	checkdepends = libgl
 	checkdepends = xorg-server-xvfb
 	makedepends = git
-	makedepends = doxygen
 	makedepends = libxcb
 	makedepends = libxml2
 	makedepends = meson
@@ -39,8 +38,3 @@ pkgname = libxkbcommon-x11-slapjd-git
 	provides = libxkbcommon-x11
 	provides = libxkbcommon-x11.so
 	conflicts = libxkbcommon-x11
-
-pkgname = libxkbcommon-doc-slapjd-git
-	pkgdesc = API documentation for libxkbcommon
-	provides = libxkbcommon-doc
-	conflicts = libxkbcommon-doc

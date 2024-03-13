@@ -5,14 +5,14 @@
 # Contributor: Joel Teichroeb <joel@teichroeb.net>
 
 pkgbase=libxkbcommon-slapjd-git
-pkgname=(libxkbcommon-slapjd-git libxkbcommon-x11-slapjd-git libxkbcommon-doc-slapjd-git)
+pkgname=(libxkbcommon-slapjd-git libxkbcommon-x11-slapjd-git)
 pkgver=1.6.0_r2264.g346d6871
 pkgrel=1
 pkgdesc='Keymap handling library for toolkits and window systems'
 url='https://xkbcommon.org/'
 arch=($CARCH)
 license=(custom)
-makedepends=(git doxygen libxcb libxml2 meson wayland wayland-protocols xkeyboard-config xorgproto)
+makedepends=(git libxcb libxml2 meson wayland wayland-protocols xkeyboard-config xorgproto)
 checkdepends=(libgl xorg-server-xvfb)
 source=(
   "git+https://github.com/xkbcommon/libxkbcommon.git"
@@ -70,8 +70,6 @@ package_libxkbcommon-slapjd-git() {
   _pick x11 "$pkgdir"/usr/include/xkbcommon/*x11*
   _pick x11 "$pkgdir"/usr/share/man/man1/*x11*
 
-  _pick doc "$pkgdir"/usr/share/doc
-
   install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
 }
 
@@ -82,16 +80,6 @@ package_libxkbcommon-x11-slapjd-git() {
   provides=(libxkbcommon-x11{,.so})
 
   mv x11/* "$pkgdir"/
-
-  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
-}
-
-package_libxkbcommon-doc-slapjd-git() {
-  conflicts=(libxkbcommon-doc)
-  provides=(libxkbcommon-doc)
-  pkgdesc='API documentation for libxkbcommon'
-
-  mv doc/* "$pkgdir"/
 
   install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 libxkbcommon/LICENSE
 }
