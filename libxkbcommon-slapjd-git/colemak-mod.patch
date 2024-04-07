@@ -1,5 +1,5 @@
 diff --git a/src/keysym-utf.c b/src/keysym-utf.c
-index 46bf777..6fdf7b3 100644
+index 46bf777..87ed5bd 100644
 --- a/src/keysym-utf.c
 +++ b/src/keysym-utf.c
 @@ -828,6 +828,46 @@ static const struct codepair keysymtab[] = {
@@ -38,7 +38,7 @@ index 46bf777..6fdf7b3 100644
 +    { 0x006c, 0x0069 }, /* l - i */
 +    { 0x006e, 0x006b }, /* n - k */
 +    { 0x006f, 0x0079 }, /* o - y */
-+    { 0x0070, 0x003a }, /* p - ; */
++    { 0x0070, 0x003b }, /* p - ; */
 +    { 0x0072, 0x0070 }, /* r - p */
 +    { 0x0073, 0x0072 }, /* s - r */
 +    { 0x0074, 0x0067 }, /* t - g */

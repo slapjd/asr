@@ -1,15 +1,5 @@
-From aa63ca0de7350e61ff0967e8812eb5c052a0db40 Mon Sep 17 00:00:00 2001
-From: slapjd <slapjd+code@outlook.com>
-Date: Tue, 24 Oct 2023 19:12:39 +0100
-Subject: [PATCH] Colemak Translation
-
----
- src/KeyBind.c     | 84 ++++++++++++++++++++++++++++++++++++++++++
- src/xkb/XKBBind.c | 94 +++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 178 insertions(+)
-
 diff --git a/src/KeyBind.c b/src/KeyBind.c
-index a8181b91..e78db9c8 100644
+index a8181b91..ca13e8f6 100644
 --- a/src/KeyBind.c
 +++ b/src/KeyBind.c
 @@ -823,6 +823,78 @@ _XTranslateKey(	register Display *dpy,
@@ -78,7 +68,7 @@ index a8181b91..e78db9c8 100644
 +    { 0x006c, 0x0069 }, /* l - i */
 +    { 0x006e, 0x006b }, /* n - k */
 +    { 0x006f, 0x0079 }, /* o - y */
-+    { 0x0070, 0x003a }, /* p - ; */
++    { 0x0070, 0x003b }, /* p - ; */
 +    { 0x0072, 0x0070 }, /* r - p */
 +    { 0x0073, 0x0072 }, /* s - r */
 +    { 0x0074, 0x0067 }, /* t - g */
@@ -111,7 +101,7 @@ index a8181b91..e78db9c8 100644
      for (p = dpy->key_bindings; p; p = p->next) {
  	if (((modifiers & AllMods) == p->state) && (symbol == p->key)) {
 diff --git a/src/xkb/XKBBind.c b/src/xkb/XKBBind.c
-index 467e4198..bda63164 100644
+index 467e4198..c7a5e38c 100644
 --- a/src/xkb/XKBBind.c
 +++ b/src/xkb/XKBBind.c
 @@ -737,6 +737,77 @@ XLookupString(register XKeyEvent *event,
@@ -180,7 +170,7 @@ index 467e4198..bda63164 100644
 +    { 0x006c, 0x0069 }, /* l - i */
 +    { 0x006e, 0x006b }, /* n - k */
 +    { 0x006f, 0x0079 }, /* o - y */
-+    { 0x0070, 0x003a }, /* p - ; */
++    { 0x0070, 0x003b }, /* p - ; */
 +    { 0x0072, 0x0070 }, /* r - p */
 +    { 0x0073, 0x0072 }, /* s - r */
 +    { 0x0074, 0x0067 }, /* t - g */
@@ -229,6 +219,3 @@ index 467e4198..bda63164 100644
      return 0;
  }
  
--- 
-2.43.0
-

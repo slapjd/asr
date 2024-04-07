@@ -4,7 +4,7 @@
 
 _pkgbasename=libx11
 pkgname=lib32-$_pkgbasename-slapjd-git
-pkgver=1.8.7.r26.g4ab58f26
+pkgver=1.8.9.r0.ga4655882
 pkgrel=1
 pkgdesc="X11 client-side library (32-bit)"
 arch=(x86_64)
@@ -20,7 +20,7 @@ source=(
 )
 sha256sums=(
     'SKIP'
-    '7219a9100e6178eaa0daf13983e78875bb19033429a65d8dcd0b8292e2fc73fc'
+    'e924a06556bf9d965d922152d4d4564e7b424672b9cff854e45d72f0e693f436'
 )
 
 pkgver() {

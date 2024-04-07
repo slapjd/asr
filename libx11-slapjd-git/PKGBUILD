@@ -3,7 +3,7 @@
 # Contributor: Chocobo1 <chocobo1 AT archlinux DOT net>
 
 pkgname=libx11-slapjd-git
-pkgver=1.8.8.r1.g9afd55ad
+pkgver=1.8.9.r0.ga4655882
 pkgrel=1
 pkgdesc="Core X11 protocol client library"
 arch=('i686' 'x86_64')
@@ -20,7 +20,7 @@ source=(
 )
 sha256sums=(
   'SKIP'
-  '7219a9100e6178eaa0daf13983e78875bb19033429a65d8dcd0b8292e2fc73fc'
+  'e924a06556bf9d965d922152d4d4564e7b424672b9cff854e45d72f0e693f436'
 )
 
 

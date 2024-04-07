@@ -18,7 +18,7 @@ pkgbase = libxkbcommon-slapjd-git
 	source = git+https://github.com/xkbcommon/libxkbcommon.git
 	source = colemak-mod.patch
 	sha256sums = SKIP
-	sha256sums = 68943e027895be387aa9926b46e0f1aa5abe7f96c1f836c71277e964711c1cd1
+	sha256sums = 133161b0a60ecaa17ff047e587673f70f4c1877ba48cfe93d632497bb587e543
 
 pkgname = libxkbcommon-slapjd-git
 	depends = libxml2
